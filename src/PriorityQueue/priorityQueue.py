@@ -3,7 +3,7 @@ sys.path.append('src')
 from PriorityQueue.doubleLinkedList import DoubleLinkedList
 from PriorityQueue.patient import Patient
 
-class Queue:
+class PriorityQueue:
 
     def __init__(self) -> None:
         self.linkedlist: DoubleLinkedList = DoubleLinkedList()
@@ -25,4 +25,9 @@ class Queue:
     def __repr__(self) -> str:
         return f"{self.linkedlist}"
 
-obj = Queue()
+obj = PriorityQueue()
+
+obj.insertar("Paciente A", "dolor agudo", 4)
+obj.insertar("Paciente B", "Consulta 2", 1)
+obj.insertar("Paciente C", "Consulta 3", 5)
+print(obj)  # Debería ser: Paciente B, Paciente A, Paciente C"""    

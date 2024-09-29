@@ -52,4 +52,5 @@ class Patient:
 
     def __repr__(self) -> str:
         return f"({self.id} - {self.name} - {self.query_description} - {self.priority})"
-    
+
+ 

@@ -10,7 +10,7 @@ class PriorityQueue:
         self.linkedlist: DoubleLinkedList = DoubleLinkedList()
         self.id = 0
 
-    def insertar(self, name, query_description, prioridad):
+    def insertar(self, name: str, query_description: str, prioridad: int):
         self.id += 1
         patient = Patient(self.id, name, query_description, prioridad)
         self.linkedlist.append_patient(patient)
@@ -20,6 +20,10 @@ class PriorityQueue:
         self.linkedlist.delete_position(0)
         return patient_treated
     
+    def cancelar(self, id: int):
+        self.linkedlist.delete_id(id)
+
+    
     def mostrar(self):
         print(f"{self.linkedlist}")
             
@@ -28,7 +32,33 @@ class PriorityQueue:
 
 obj = PriorityQueue()
 
-obj.insertar("Paciente A", "dolor agudo", 4)
+"""obj.insertar("Paciente A", "dolor agudo", 4)
 obj.insertar("Paciente B", "Consulta 2", 1)
 obj.insertar("Paciente C", "Consulta 3", 5)
-print(obj)  # Debería ser: Paciente B, Paciente A, Paciente C"""    
+print(obj)  # Debería ser: Paciente B, Paciente A, Paciente C"""
+
+"""obj.insertar("Paciente A", "Consulta", 3)
+obj.insertar("Paciente B", "Consulta", 5)
+obj.insertar("Paciente C", "Consulta", 1)
+obj.insertar("Paciente D", "Consulta", 4)
+obj.mostrar()  # Debe ser: Paciente C, Paciente A, Paciente D, Paciente B
+print(obj.antender())
+obj.mostrar()"""
+
+"""obj.insertar("Paciente 1", "Consulta", 2)
+obj.insertar("Paciente 2", "Consulta", 2)
+obj.insertar("Paciente 3", "Consulta", 2)
+print(obj)  # Debería ser: Paciente 1, Paciente 2, Paciente 3"""
+
+"""obj.insertar("Paciente 1", "Consulta", 1)
+obj.insertar("Paciente 2", "Consulta", 2)
+obj.insertar("Paciente 3", "Consulta", 3)
+print(obj)  # Debería ser: Paciente 1, Paciente 2, Paciente 3"""
+
+obj.insertar("Paciente 1", "Consulta", 4)
+obj.insertar("Paciente 2", "Consulta", 1)
+obj.insertar("Paciente 3", "Consulta", 5)
+print(obj)  # Debe ser: Paciente 2, Paciente 1, Paciente 3"""   
+
+obj.cancelar(3)
+print(obj)

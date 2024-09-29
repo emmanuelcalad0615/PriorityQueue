@@ -3,6 +3,7 @@ sys.path.append('src')
 from PriorityQueue.doubleLinkedList import DoubleLinkedList
 from PriorityQueue.patient import Patient
 
+
 class PriorityQueue:
 
     def __init__(self) -> None:

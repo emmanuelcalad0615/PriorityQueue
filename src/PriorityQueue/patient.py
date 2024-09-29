@@ -9,7 +9,7 @@ class Patient:
         else:
             self.priority: int = priority     
 
-    def quitar_tildes(self, text: str):
+    def remove_accent(self, text: str):
         accents = {
             "á": "a",
             "é": "e",
@@ -28,7 +28,7 @@ class Patient:
         medium_low_priority = ["revisión", "control", "chequeo", "seguimiento", "consulta rutinaria", "vacunación", "prevención"]
         low_priority = ["consulta general", "pregunta", "información", "duda", "evaluación", "orientación"]
 
-        description = self.quitar_tildes(description)
+        description = self.remove_accent(description)
 
         for word in high_priority:
             if word in description:
@@ -52,3 +52,4 @@ class Patient:
 
     def __repr__(self) -> str:
         return f"({self.id} - {self.name} - {self.query_description} - {self.priority})"
+    

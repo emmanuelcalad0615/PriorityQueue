@@ -105,11 +105,7 @@ class DoubleLinkedList:
                 previous_nodo.next = next_nodo
                 next_nodo.prev = previous_nodo
                 self.size -= 1
-
-
-
-                 
-
+                
     def delete_position(self, position: int):
         if self.size == 0: 
             raise EmptyDoubleLinkedList("Lista vacía")

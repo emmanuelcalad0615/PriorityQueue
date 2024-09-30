@@ -9,7 +9,7 @@ class Patient:
         else:
             self.priority: int = priority     
 
-    def remove_accent(self, text: str):
+    def remove_accent(self, text: str) -> str:
         accents = {
             "á": "a",
             "é": "e",
@@ -20,13 +20,13 @@ class Patient:
         text = text.lower() 
         return "".join(accents.get(c, c) for c in text)  
 
-    def priority_calculate(self, description: str):
+    def priority_calculate(self, description: str) -> int:
 
         high_priority = ["dolor agudo", "fractura", "ataque", "hemorragia", "desmayo", "dificultad para respirar", "dolor en el pecho", "infarto"]
-        medium_high_priority = ["fiebre alta", "crisis", "shock", "infección grave", "sangrado", "dolor intenso", "pérdida de consciencia"]
-        medium_priority = ["fiebre", "tos", "náuseas", "vómitos", "dolor de cabeza", "cansancio", "dolor de estómago", "infección"]
-        medium_low_priority = ["revisión", "control", "chequeo", "seguimiento", "consulta rutinaria", "vacunación", "prevención"]
-        low_priority = ["consulta general", "pregunta", "información", "duda", "evaluación", "orientación"]
+        medium_high_priority = ["fiebre alta", "crisis", "shock", "infeccion grave", "sangrado", "dolor intenso", "pérdida de consciencia"]
+        medium_priority = ["fiebre", "tos", "nauseas", "vomitos", "dolor de cabeza", "cansancio", "dolor de estomago", "infeccion"]
+        medium_low_priority = ["revision", "control", "chequeo", "seguimiento", "consulta rutinaria", "vacunacion", "prevencion"]
+        low_priority = ["consulta general", "pregunta", "informacion", "duda", "evaluacion", "orientacion"]
 
         description = self.remove_accent(description)
 

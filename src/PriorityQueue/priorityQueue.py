@@ -2,6 +2,7 @@ import sys
 sys.path.append('src')
 from PriorityQueue.doubleLinkedList import DoubleLinkedList
 from PriorityQueue.patient import Patient
+from PriorityQueue.doubleLinkedList import Node
 
 
 class PriorityQueue:
@@ -15,7 +16,7 @@ class PriorityQueue:
         patient = Patient(self.id, name, query_description, prioridad)
         self.linkedlist.append_patient(patient)
 
-    def antender(self):
+    def antender(self) -> Node:
         patient_treated = self.linkedlist.head
         self.linkedlist.delete_position(0)
         return patient_treated
@@ -42,7 +43,7 @@ obj.insertar("Paciente B", "Consulta", 5)
 obj.insertar("Paciente C", "Consulta", 1)
 obj.insertar("Paciente D", "Consulta", 4)
 obj.mostrar()  # Debe ser: Paciente C, Paciente A, Paciente D, Paciente B
-print(obj.antender())
+print(type(obj.antender()))
 obj.mostrar()"""
 
 """obj.insertar("Paciente 1", "Consulta", 2)
@@ -55,10 +56,10 @@ obj.insertar("Paciente 2", "Consulta", 2)
 obj.insertar("Paciente 3", "Consulta", 3)
 print(obj)  # Debería ser: Paciente 1, Paciente 2, Paciente 3"""
 
-obj.insertar("Paciente 1", "Consulta", 4)
+"""obj.insertar("Paciente 1", "Consulta", 4)
 obj.insertar("Paciente 2", "Consulta", 1)
 obj.insertar("Paciente 3", "Consulta", 5)
-print(obj)  # Debe ser: Paciente 2, Paciente 1, Paciente 3"""   
+print(obj)  # Debe ser: Paciente 2, Paciente 1, Paciente 3 
 
 obj.cancelar(3)
-print(obj)
+print(obj)"""

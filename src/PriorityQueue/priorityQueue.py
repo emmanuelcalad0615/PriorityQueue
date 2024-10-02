@@ -11,9 +11,9 @@ class PriorityQueue:
         self.linkedlist: DoubleLinkedList = DoubleLinkedList()
         self.id = 0
 
-    def insertar(self, name: str, query_description: str, prioridad: int):
+    def insertar(self, name: str, query_description: str):
         self.id += 1
-        patient = Patient(self.id, name, query_description, prioridad)
+        patient = Patient(self.id, name, query_description)
         self.linkedlist.append_patient(patient)
 
     def antender(self) -> Node:

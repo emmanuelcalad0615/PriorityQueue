@@ -18,7 +18,7 @@ class Patient:
         text = text.lower() 
         return "".join(accents.get(c, c) for c in text)  
 
-   def priority_calculate(self, description: str) -> int:
+    def priority_calculate(self, description: str) -> int:
         priority_map = {
             "dolor agudo": 1,
             "fractura": 1,

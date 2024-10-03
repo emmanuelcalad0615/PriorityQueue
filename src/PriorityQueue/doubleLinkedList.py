@@ -1,13 +1,19 @@
-
 import sys
 sys.path.append("src")
 from PriorityQueue.patient import Patient
+
 class EmptyDoubleLinkedList(Exception):
+    pass
+class DimensionError(Exception):
+    pass
+class IDError(Exception):
     pass
 
 class Node:
 
     def __init__(self, patient: Patient) -> None:
+        if not isinstance(patient, Patient):
+            raise ValueError("El paciente debe ser un objeto de tipo paciente")
         self.value: Patient = patient 
         self.next: Node = None
         self.prev: Node = None
@@ -23,6 +29,8 @@ class DoubleLinkedList:
         self.size = 0
         
     def append_patient(self, patient: Patient):
+        if not isinstance(patient, Patient):
+            raise ValueError("El paciente debe ser un objeto de tipo paciente")
         nodo_add = Node(patient)
         if self.size == 0: 
             self.head = nodo_add  
@@ -64,6 +72,7 @@ class DoubleLinkedList:
                 nodo.prev = nodo_add
 
         self.size += 1
+        return True
     
     def delete_id(self, id: int):
         if self.size == 0: 
@@ -74,7 +83,7 @@ class DoubleLinkedList:
                 self.tail = None
                 self.size -= 1
             else:
-                return "ID no encontrado"        
+                raise IDError("ID no encontrado")      
         else:
             nodo = self.head
             while nodo.next != None:
@@ -95,7 +104,7 @@ class DoubleLinkedList:
                     nodo.prev = None
                     self.size -= 1
                 else:
-                    return "ID no encontrado"    
+                    raise IDError("ID no encontrado")    
 
             else:
                 previous_nodo = nodo.prev
@@ -105,13 +114,14 @@ class DoubleLinkedList:
                 previous_nodo.next = next_nodo
                 next_nodo.prev = previous_nodo
                 self.size -= 1
-                
+            return True    
+
     def delete_position(self, position: int):
         if self.size == 0: 
             raise EmptyDoubleLinkedList("Lista vacía")
         
         if self.size - 1 < position or position < 0:
-            return "Supera las dimensiones de la lista"
+            raise DimensionError("La posición supera las dimensiones de la lista")
         
         if self.size == 1:
             self.tail = None
@@ -142,7 +152,8 @@ class DoubleLinkedList:
             nodo.next = None
             next_nodo.prev = previous_nodo
             previous_nodo.next = next_nodo
-            self.size -= 1             
+            self.size -= 1  
+        return True               
     
     def __repr__(self):
         return str(self.head)    

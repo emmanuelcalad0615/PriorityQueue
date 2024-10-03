@@ -1,6 +1,10 @@
 class Patient:
 
     def __init__(self, id: int, name: str, query_description: str) -> None:
+        if not name or not isinstance(name, str):
+            raise ValueError("El nombre debe ser un valor de tipo str diferente de vacío")
+        if not query_description or not isinstance(query_description, str):
+            raise ValueError("La descripción debe ser un valor de tipo str diferente de vacío")
         self.id: int = id
         self.name: str = name    
         self.query_description: str = query_description
@@ -70,3 +74,23 @@ class Patient:
         return f"({self.id} - {self.name} - {self.query_description} - {self.priority})"
 
  
+
+"""patients = {
+    "Juan Perez": "sufre de dolor agudo en el abdomen",  #  1
+    "Maria Lopez": "necesita una consulta rutinaria para chequeo",  #  4
+    "Carlos Gomez": "presenta una fractura en el brazo",  #  1
+    "Ana Torres": "tiene tos persistente y necesita evaluación",  # 3
+    "Luis Fernandez": "experimenta dolor intenso en la espalda",  #  2
+    "Elena Martinez": "reporta fiebre alta desde hace tres días",  # 2
+    "Pedro Alvarez": "sufre de infección grave en el pie",  #  2
+    "Sofia Reyes": "asiste a una consulta general anual",  #  5
+    "Luis Gomez": "tiene preguntas sobre su tratamiento actual",  #  5
+    "Carlos Ruiz": "presenta dificultad para respirar después de hacer ejercicio"  #  1
+}
+
+
+for name, description in patients.items():
+    i = 0
+    patient = Patient(i, name, description)  
+    print(f"Paciente: {patient.name}, Descripción: '{patient.query_description}', Prioridad: {patient.priority}")
+    i += 1"""

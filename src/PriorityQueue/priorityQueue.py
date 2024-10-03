@@ -1,65 +1,81 @@
 import sys
 sys.path.append('src')
-from PriorityQueue.doubleLinkedList import DoubleLinkedList
+from PriorityQueue.doubleLinkedList import DoubleLinkedList, IDError, EmptyDoubleLinkedList, DimensionError
 from PriorityQueue.patient import Patient
 from PriorityQueue.doubleLinkedList import Node
 
-
 class PriorityQueue:
-
     def __init__(self) -> None:
-        self.linkedlist: DoubleLinkedList = DoubleLinkedList()
+        self.linkedlist = DoubleLinkedList()
         self.id = 0
 
     def insertar(self, name: str, query_description: str):
-        self.id += 1
-        patient = Patient(self.id, name, query_description)
-        self.linkedlist.append_patient(patient)
 
-    def antender(self) -> Node:
-        patient_treated = self.linkedlist.head
-        self.linkedlist.delete_position(0)
-        return patient_treated
-    
+        try:
+            self.id += 1
+            patient = Patient(self.id, name, query_description)
+            self.linkedlist.append_patient(patient)
+            print(f"Paciente {patient.name} insertado con prioridad {patient.priority}.")
+
+        except ValueError as e:
+            print(f"Error al insertar paciente: {e}")
+
+        except Exception as e:
+            print(f"Ocurrió un error inesperado: {e}")
+
+    def antender(self):
+
+        try:
+            if self.linkedlist.size == 0:
+                raise EmptyDoubleLinkedList("No hay pacientes en la cola.")
+            patient_treated = self.linkedlist.head
+            self.linkedlist.delete_position(0)
+            print(f"Paciente atendido: {patient_treated.value.name}.")
+
+        except EmptyDoubleLinkedList as e:
+            print(f"Error: {e}")
+
+        except Exception as e:
+            print(f"Ocurrió un error inesperado: {e}")
+
     def cancelar(self, id: int):
-        self.linkedlist.delete_id(id)
+        try:
+            self.linkedlist.delete_id(id)
+            print(f"Paciente con ID {id} cancelado.")
 
-    
+        except IDError as e:
+            print(f"Error: {e}")
+
+        except EmptyDoubleLinkedList as e:
+            print(f"Error: {e}")
+
+        except Exception as e:
+            print(f"Ocurrió un error inesperado: {e}")
+
     def mostrar(self):
-        print(f"{self.linkedlist}")
-            
-    def __repr__(self) -> str:
-        return f"{self.linkedlist}"
+        print(f"Estado actual de la cola: {self.linkedlist}")
 
-obj = PriorityQueue()
+"""priority_queue = PriorityQueue()
 
-"""obj.insertar("Paciente A", "dolor agudo", 4)
-obj.insertar("Paciente B", "Consulta 2", 1)
-obj.insertar("Paciente C", "Consulta 3", 5)
-print(obj)  # Debería ser: Paciente B, Paciente A, Paciente C"""
+patients = {
+    "Juan Perez": "sufre de dolor agudo en el abdomen",
+    "Maria Lopez": "necesita una consulta rutinaria para chequeo",
+    "Carlos Gomez": "presenta una fractura en el brazo",
+    "Ana Torres": "tiene tos persistente y necesita evaluación",
+    "Luis Fernandez": "experimenta dolor intenso en la espalda",
+    "Elena Martinez": "reporta fiebre alta desde hace tres días",
+    "Pedro Alvarez": "sufre de infección grave en el pie",
+    "Sofia Reyes": "asiste a una consulta general anual",
+    "Luis Gomez": "tiene preguntas sobre su tratamiento actual",
+    "Carlos Ruiz": "presenta dificultad para respirar después de hacer ejercicio"
+}
 
-"""obj.insertar("Paciente A", "Consulta", 3)
-obj.insertar("Paciente B", "Consulta", 5)
-obj.insertar("Paciente C", "Consulta", 1)
-obj.insertar("Paciente D", "Consulta", 4)
-obj.mostrar()  # Debe ser: Paciente C, Paciente A, Paciente D, Paciente B
-print(type(obj.antender()))
-obj.mostrar()"""
+for name, description in patients.items():
+    priority_queue.insertar(name, description)
 
-"""obj.insertar("Paciente 1", "Consulta", 2)
-obj.insertar("Paciente 2", "Consulta", 2)
-obj.insertar("Paciente 3", "Consulta", 2)
-print(obj)  # Debería ser: Paciente 1, Paciente 2, Paciente 3"""
+priority_queue.antender()
 
-"""obj.insertar("Paciente 1", "Consulta", 1)
-obj.insertar("Paciente 2", "Consulta", 2)
-obj.insertar("Paciente 3", "Consulta", 3)
-print(obj)  # Debería ser: Paciente 1, Paciente 2, Paciente 3"""
+priority_queue.cancelar(2)
 
-"""obj.insertar("Paciente 1", "Consulta", 4)
-obj.insertar("Paciente 2", "Consulta", 1)
-obj.insertar("Paciente 3", "Consulta", 5)
-print(obj)  # Debe ser: Paciente 2, Paciente 1, Paciente 3 
+priority_queue.mostrar()"""
 
-obj.cancelar(3)
-print(obj)"""
